@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>ftp服务搭建捏 | nanaall96</title>
+    <title>树莓派Raspberry Pi图形桌面安装 | nanaall96</title>
     <meta name="author" content="nanaall96" />
     <meta name="description" content="just my blog" />
     <meta name="keywords" content="" />
@@ -91,6 +91,11 @@
             <span>&ensp;Tags</span>
         </a>
         
+        <a href="/links">
+            <i class="fa-solid fa-link fa-fw"></i>
+            <span>&ensp;Links</span>
+        </a>
+        
     </nav>
     <nav id="mobile-menu">
         <div class="title" @click="showMenuItems = !showMenuItems">
@@ -145,6 +150,15 @@
                     </div>
                 </a>
                 
+                <a href="/links">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-link fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Links</div>
+                    </div>
+                </a>
+                
             </div>
         </transition>
     </nav>
@@ -156,22 +170,22 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>ftp服务搭建捏</h1>
+        <h1>树莓派Raspberry Pi图形桌面安装</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2024/12/9
+            2025/2/8
         </span>
         
         <span class="category">
-            <a href="/categories/learn/">
+            <a href="/categories/Learn/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
-                learn
+                Learn
             </a>
         </span>
         
@@ -184,22 +198,29 @@
             
             <span class="tag">
                 
-                <a href="/tags/ftp/" style="color: #ff7d73">
-                    ftp
+                <a href="/tags/Linux/" style="color: #ffa2c4">
+                    Linux
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/liunx/" style="color: #00bcd4">
-                    liunx
+                <a href="/tags/Debian/" style="color: #00bcd4">
+                    Debian
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/debian/" style="color: #ff7d73">
-                    debian
+                <a href="/tags/Raspberry-Pi/" style="color: #00a596">
+                    Raspberry_Pi
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Desktop/" style="color: #ff7d73">
+                    Desktop
                 </a>
             </span>
             
@@ -208,119 +229,185 @@
     </div>
     
     <div class="content" v-pre>
-        <h2 id="ftp服务搭建捏"><a href="#ftp服务搭建捏" class="headerlink" title="ftp服务搭建捏"></a>ftp服务搭建捏</h2><span id="more"></span>
+        <h3 id="因为一开始用的是lite镜像，现在想玩一玩桌面顺便接上家里不用的电视喵-（"><a href="#因为一开始用的是lite镜像，现在想玩一玩桌面顺便接上家里不用的电视喵-（" class="headerlink" title="因为一开始用的是lite镜像，现在想玩一玩桌面顺便接上家里不用的电视喵~（"></a>因为一开始用的是lite镜像，现在想玩一玩桌面顺便接上家里不用的电视喵~（</h3><span id="more"></span>
 
-
-
-<h3 id="vsftpd安装与配置"><a href="#vsftpd安装与配置" class="headerlink" title="vsftpd安装与配置"></a>vsftpd安装与配置</h3><ul>
-<li><p>安装vsftpd</p>
+<ul>
+<li>安装桌面GUI及其管理服务</li>
+</ul>
 <ol>
-<li><p>使用命令</p>
+<li><p>依次安装Xorg、xinit，加-y参数安装过程自动确认，需要下载和安装的时间比较长，建议泡个茶喝个咖啡什么滴。</p>
+<p> <code>sudo apt-get install --no-install-recommends xserver-xorg -y</code></p>
+<p> <code>sudo apt-get install --no-install-recommends xinit -y</code></p>
+</li>
+<li><p>安装桌面GUI类型，按个人爱好选其一：</p>
 <ul>
-<li><code>sudo apt install vsftpd</code></li>
+<li><p>Raspberry Pi Desktop (RPD) GUI</p>
+<p><code>sudo apt-get install raspberrypi-ui-mods -y</code></p>
+</li>
+<li><p>LXDE GUI</p>
+<p><code>sudo apt-get install lxde-core lxappearance  -y</code></p>
+</li>
+<li><p>XFCE GUI</p>
+<p><code>sudo apt-get install xfce4 xfce4-terminal -y</code></p>
+</li>
 </ul>
 </li>
-<li><p>开启vsftpd服务</p>
-<ul>
-<li><code>sudo systemctl start vsftpd</code></li>
-<li><code>sudo systemctl enable vsftpd</code></li>
-<li><code>sudo systemctl status vsftpd</code></li>
-</ul>
+<li><p>安装登陆管理器</p>
+<p> <code>sudo apt-get install lightdm</code></p>
 </li>
-<li><p>添加用户</p>
-<ul>
-<li><code>useradd -m ftpuser</code></li>
-</ul>
+<li><p>设置自动进入桌面</p>
+<p> <code>sudo raspi-config</code></p>
 </li>
-<li><p>修改用户密码</p>
-<ul>
-<li><code>passwd ftpuser</code></li>
-</ul>
+<li><p>到了这里不同的版本界面会可能有很大的区别，我的是这样的。(截图太吃空间就不用了喵~)</p>
 <blockquote>
-<p>会让你重复输入两遍密码，注意Linux中密码是不会回显的。</p>
+<p>提前说一下，这里你只需要找到意思是<code>Select boot into desktop or to command line</code>的就行，因为我参考别人的文章他的raspi-config界面和我完全不一样（</p>
 </blockquote>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th>Raspberry Pi Software Configuration Tool (raspi-config)</th>
+<th align="right"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1 System Options</td>
+<td></td>
+<td align="right">Configure System Options system settings</td>
+</tr>
+<tr>
+<td align="left">2 Display Options</td>
+<td></td>
+<td align="right">Configure display settings</td>
+</tr>
+<tr>
+<td align="left">3 Interface ptions</td>
+<td></td>
+<td align="right">Configure connections to peripherals</td>
+</tr>
+<tr>
+<td align="left">4 Performance Options</td>
+<td></td>
+<td align="right">Configure performance settings</td>
+</tr>
+<tr>
+<td align="left">5 Localisation Options</td>
+<td></td>
+<td align="right">Configure language and regional settings</td>
+</tr>
+<tr>
+<td align="left">6 Advanced Options</td>
+<td></td>
+<td align="right">Configure advanced settings</td>
+</tr>
+<tr>
+<td align="left">8 Update</td>
+<td></td>
+<td align="right">Update this tool to the latest version</td>
+</tr>
+</tbody></table>
+<ul>
+<li>上面选 <em>1 System Options</em></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th>Raspberry Pi Software Configuration Tool (raspi-config)</th>
+<th align="right"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">S1 Wireless LAN</td>
+<td></td>
+<td align="right">Enter SSID and passphrase</td>
+</tr>
+<tr>
+<td align="left">S2 Audio</td>
+<td></td>
+<td align="right">Select audio out through HDMI or 3.5mm jack</td>
+</tr>
+<tr>
+<td align="left">S3 Password</td>
+<td></td>
+<td align="right">Change password for themiku’user</td>
+</tr>
+<tr>
+<td align="left">S4 Hostname</td>
+<td></td>
+<td align="right">Set name for this computer ona network</td>
+</tr>
+<tr>
+<td align="left">S5 Boot &#x2F; Auto Login</td>
+<td></td>
+<td align="right">Select boot into desktop or to command line</td>
+</tr>
+<tr>
+<td align="left">S6 Splash Screen</td>
+<td></td>
+<td align="right">Choose graphical splashscreenortext boot</td>
+</tr>
+<tr>
+<td align="left">S7 Power LED</td>
+<td></td>
+<td align="right">Set behaviour of power LED</td>
+</tr>
+<tr>
+<td align="left">S8 Browser</td>
+<td></td>
+<td align="right">Choose default web browser</td>
+</tr>
+<tr>
+<td align="left">S9 Logging</td>
+<td></td>
+<td align="right">Set storage location for logs</td>
+</tr>
+</tbody></table>
+<ul>
+<li>上面选 <em>S5 Boot &#x2F; Auto Login</em></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th>Raspberry Pi Software Configuration Tool (raspi-config)</th>
+<th align="right"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">B1 Console</td>
+<td></td>
+<td align="right">Text console, requiring user to login</td>
+</tr>
+<tr>
+<td align="left">B2 Console Autologin</td>
+<td></td>
+<td align="right">Text console, automatically logged in as ‘miku’ user</td>
+</tr>
+<tr>
+<td align="left">B3 Desktop</td>
+<td></td>
+<td align="right">Desktop GUI requiring user to login</td>
+</tr>
+<tr>
+<td align="left">B4 Desktop Autologin</td>
+<td></td>
+<td align="right">Desktop GUI, automatically logged in as ‘miku’ user</td>
+</tr>
+</tbody></table>
+<ul>
+<li>上面我选了 <em>B4 Desktop Autologin</em> 当然你也可以选B3。</li>
+</ul>
 </li>
 </ol>
-</li>
-<li><p>配置</p>
+<hr>
 <ul>
-<li><blockquote>
-<p>接下来需要修改vsftpd的配置文件</p>
-</blockquote>
-</li>
-<li><blockquote>
-<p>配置文件位于&#x2F;etc&#x2F;vsftpd.conf</p>
-</blockquote>
-</li>
-<li><p>使用命令sudo nano &#x2F;etc&#x2F;vsftpd.conf，主要部分如下</p>
-<pre><code>listen=NO
-listen_ipv6=YES
-
-anonymous_enable=NO
-
-local_enable=YES
-
-write_enable=YES
-
-local_umask=022
-anon_upload_enable=YES
-dirmessage_enable=YES
-use_localtime=YES
-
-xferlog_enable=YES
-
-connect_from_port_20=YES
-chroot_local_user=YES
-secure_chroot_dir=/var/run/vsftpd/empty
-
-pam_service_name=vsftpd
-
-rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
-rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
-ssl_enable=NO
-
-# 被动 FTP 连接
-# 默认情况下，VSFTPD使用主动模式。要使用被动模式，请设置端口的最小和最大范围。
-# 您可以使用任何端口进行被动的FTP连接。启用被动模式时，FTP客户端在所选范围内的随机端口上打开与服务器的连接。
-
-pasv_min_port=30000
-pasv_max_port=31000
-
-# 以下部分需要手动添加，模板里没有
-
-allow_writeable_chroot=YES
-userlist_enable=YES
-userlist_deny=NO
-local_root=/home/ftpuser
-anon_other_write_enable=YES
-</code></pre>
-</li>
-<li><p>再把刚刚建的用户添加到白名单里</p>
-<p><code>echo &quot;ftpuser&quot; | sudo tee -a  /etc/vsftpd.user_list</code></p>
-</li>
-<li><p>创建上传目录，修改权限</p>
-<p>在刚刚创建的用户主目录下创建一个新的文件夹，用于存储FTP接收的文件</p>
+<li><p>参考链接</p>
 <ul>
-<li><code>sudo mkdir /home/ftpuser/upload</code></li>
-<li><code>sudo chmod -R 777 /home/ftpuser/upload</code></li>
-</ul>
-<p>上传的文件只能存储在upload文件夹下，如果想放在根目录下还需要修改权限。</p>
+<li><p><a target="_blank" rel="noopener" href="https://www.raspberrypi.org/forums/viewtopic.php?t=133691">https://www.raspberrypi.org/forums/viewtopic.php?t=133691</a></p>
 </li>
-<li><p>重启vsftpd服务</p>
-<p><code>sudo systemctl restart vsftpd</code></p>
-<p>重启好之后就可以正常使用了</p>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/blueisman/article/details/104048628">https://blog.csdn.net/blueisman/article/details/104048628</a></p>
 </li>
-</ul>
-</li>
-</ul>
-<p>——————————</p>
-<h3 id="bye"><a href="#bye" class="headerlink" title="bye~"></a>bye~</h3><ul>
-<li><blockquote>
-<p>原文链接</p>
-</blockquote>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/swipathefox/article/details/127135371">https://blog.csdn.net/swipathefox/article/details/127135371</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.myfreax.com/how-to-setup-ftp-server-with-vsftpd-on-debian-11/#:~:text=%E8%A6%81%E4%BD%BF%E7%94%A8%E8%A2%AB%E5%8A%A8%E6%A8%A1%E5%BC%8F%EF%BC%8C%E8%AF%B7%E8%AE%BE%E7%BD%AE%E7%AB%AF%E5%8F%A3%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C%E6%9C%80%E5%A4%A7%E8%8C%83%E5%9B%B4%E3%80%82%20%E6%82%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BB%BB%E4%BD%95%E7%AB%AF%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%A2%AB%E5%8A%A8%E7%9A%84FTP%E8%BF%9E%E6%8E%A5%E3%80%82%20%E5%90%AF%E7%94%A8%E8%A2%AB%E5%8A%A8%E6%A8%A1%E5%BC%8F%E6%97%B6%EF%BC%8CFTP%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%9C%A8%E6%89%80%E9%80%89%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E9%9A%8F%E6%9C%BA%E7%AB%AF%E5%8F%A3%E4%B8%8A%E6%89%93%E5%BC%80%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E8%BF%9E%E6%8E%A5%E3%80%82%20%E6%82%A8%E5%8F%AF%E4%BB%A5%E9%85%8D%E7%BD%AEVSFTPD%E4%BB%A5%E4%BB%85%E5%85%81%E8%AE%B8%E6%9F%90%E4%BA%9B%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E3%80%82,%E8%A6%81%E6%89%A7%E8%A1%8C%E6%AD%A4%E6%93%8D%E4%BD%9C%EF%BC%8C%E8%AF%B7%E5%9C%A8%E6%96%87%E4%BB%B6%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E4%BB%A5%E4%B8%8B%E9%85%8D%E7%BD%AE%E3%80%82%20%E5%BD%93%E5%90%AF%E7%94%A8%E8%BF%99%E4%BA%9B%E9%80%89%E9%A1%B9%E6%97%B6%EF%BC%8C%E6%82%A8%E9%9C%80%E8%A6%81%E6%98%8E%E7%A1%AE%E5%B0%86%E7%94%A8%E6%88%B7%E5%90%8D%E6%B7%BB%E5%8A%A0%E5%88%B0%20%2Fetc%2Fvsftpd.user_allow_list%20%E6%96%87%E4%BB%B6%E6%9D%A5%E6%8C%87%E5%AE%9A%E5%85%81%E8%AE%B8%E7%99%BB%E5%BD%95%E7%9A%84%E7%94%A8%E6%88%B7%E3%80%82">https://www.myfreax.com/how-to-setup-ftp-server-with-vsftpd-on-debian-11/#:~:text=%E8%A6%81%E4%BD%BF%E7%94%A8%E8%A2%AB%E5%8A%A8%E6%A8%A1%E5%BC%8F%EF%BC%8C%E8%AF%B7%E8%AE%BE%E7%BD%AE%E7%AB%AF%E5%8F%A3%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C%E6%9C%80%E5%A4%A7%E8%8C%83%E5%9B%B4%E3%80%82%20%E6%82%A8%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BB%BB%E4%BD%95%E7%AB%AF%E5%8F%A3%E8%BF%9B%E8%A1%8C%E8%A2%AB%E5%8A%A8%E7%9A%84FTP%E8%BF%9E%E6%8E%A5%E3%80%82%20%E5%90%AF%E7%94%A8%E8%A2%AB%E5%8A%A8%E6%A8%A1%E5%BC%8F%E6%97%B6%EF%BC%8CFTP%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%9C%A8%E6%89%80%E9%80%89%E8%8C%83%E5%9B%B4%E5%86%85%E7%9A%84%E9%9A%8F%E6%9C%BA%E7%AB%AF%E5%8F%A3%E4%B8%8A%E6%89%93%E5%BC%80%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E8%BF%9E%E6%8E%A5%E3%80%82%20%E6%82%A8%E5%8F%AF%E4%BB%A5%E9%85%8D%E7%BD%AEVSFTPD%E4%BB%A5%E4%BB%85%E5%85%81%E8%AE%B8%E6%9F%90%E4%BA%9B%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E3%80%82,%E8%A6%81%E6%89%A7%E8%A1%8C%E6%AD%A4%E6%93%8D%E4%BD%9C%EF%BC%8C%E8%AF%B7%E5%9C%A8%E6%96%87%E4%BB%B6%E6%9C%AB%E5%B0%BE%E6%B7%BB%E5%8A%A0%E4%BB%A5%E4%B8%8B%E9%85%8D%E7%BD%AE%E3%80%82%20%E5%BD%93%E5%90%AF%E7%94%A8%E8%BF%99%E4%BA%9B%E9%80%89%E9%A1%B9%E6%97%B6%EF%BC%8C%E6%82%A8%E9%9C%80%E8%A6%81%E6%98%8E%E7%A1%AE%E5%B0%86%E7%94%A8%E6%88%B7%E5%90%8D%E6%B7%BB%E5%8A%A0%E5%88%B0%20%2Fetc%2Fvsftpd.user_allow_list%20%E6%96%87%E4%BB%B6%E6%9D%A5%E6%8C%87%E5%AE%9A%E5%85%81%E8%AE%B8%E7%99%BB%E5%BD%95%E7%9A%84%E7%94%A8%E6%88%B7%E3%80%82</a></li>
 </ul>
 </li>
 </ul>
